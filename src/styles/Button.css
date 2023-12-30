@@ -1,0 +1,21 @@
+.btn{
+    width: 5rem;
+    height: 1.7rem;
+    margin: 0 0.2rem;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+}
+.btn:focus{
+    outline: none;
+}
+.btn-success{
+    background-color: #86c980;
+}
+
+.btn-warning{
+    background-color: #f70046;
+}
+.btn-primary{
+    background-color: #4e744e;
+}

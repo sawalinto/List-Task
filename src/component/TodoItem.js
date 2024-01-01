@@ -2,16 +2,15 @@ import React from "react";
 import Button from './Button';
 import PropTypes from "prop-types";
 
-const TodoItem = ({todo, del, open})=>{
-    const delById = id=>{
-        del(id)
-    }
+const TodoItem = ({todo,hapusData, open})=>{
+    
     return(
         <div style={todoItem}>
             <p>{todo.title}</p>
             <div>
                 <Button text="edit" variant="success" action={()=> open(todo.id, todo.title)} />
-                <Button text="delete" variant="warning" action={()=>delById(todo.id)}  />
+                <Button text="delete" variant="warning" action={()=> hapusData(todo.id)}  />
+                {/* <Button text="delete" variant="warning" action={()=>delById(todo.id)}  /> */}
             </div>
         </div>
     )

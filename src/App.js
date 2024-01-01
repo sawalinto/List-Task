@@ -5,6 +5,7 @@ import FormInput from "./component/FormInput";
 import TodoItem from "./component/TodoItem";
 import "./App.css";
 import EditModal from "./component/EditModal";
+import DeleteModal from "./component/DeleteModal";
 
 class App extends React.Component {
   state = {
@@ -19,10 +20,14 @@ class App extends React.Component {
       },
     ],
     isEdit: false,
+    isDel:false,
     editData: {
       id: "",
       title: "",
     },
+    delData:{
+      id: ""
+    }
   };
   setTitle = (e) => {
     this.setState({
@@ -34,9 +39,10 @@ class App extends React.Component {
   };
 
   deleteTask = (id) => {
-    console.log("delete ok");
+
     this.setState({
       todos: this.state.todos.filter((item) => item.id !== id),
+      isDel: false,
     });
   };
 
@@ -60,10 +66,10 @@ class App extends React.Component {
     this.setState({
       todos: newTodos,
       isEdit: false,
-      editData:{
+      editData: {
         id: "",
-        title: ""
-      }
+        title: "",
+      },
     });
   };
 
@@ -79,6 +85,15 @@ class App extends React.Component {
   closeModal = () => {
     this.setState({
       isEdit: false,
+      isDel:false
+    });
+  };
+  delModal = (id) => {
+    this.setState({
+      isDel: true,
+      delData:{
+        id,
+      }
     });
   };
 
@@ -97,6 +112,7 @@ class App extends React.Component {
               todo={item}
               del={this.deleteTask}
               open={this.openModal}
+              hapusData = {this.delModal}
             />
           ))}
         </div>
@@ -108,7 +124,14 @@ class App extends React.Component {
           close={this.closeModal}
           data={this.state.editData}
           change={this.setTitle}
-          update = {this.update}
+          update={this.update}
+        />
+        <DeleteModal
+          delete={this.state.isDel}
+          data={this.state.delData}
+          del={this.deleteTask}
+          // edit={this.state.isEdit}
+          close={this.closeModal}
         />
       </div>
     );
